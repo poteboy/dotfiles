@@ -40,7 +40,7 @@ set nocompatible
 filetype off
 
 " nerdtree
-execute pathogen#infect()
+ execute pathogen#infect()
 
 " 隠しファイルをデフォルトで表示
 let NERDTreeShowHidden = 1

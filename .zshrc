@@ -2,13 +2,13 @@ export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$HOME/.nodebrew/current/bin:$PATH
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/go/bin
 export PATH="./node_modules/.bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
+export NVM_DIR="$HOME/.nvm"
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init --path)"
 fi
@@ -37,6 +37,8 @@ precmd(){ vcs_info }
 function peco-cd {
   cd "$( ghq list --full-path | peco)"
 }
+
+code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 
 pg() {
   git branch -a --sort=-authordate |
@@ -79,6 +81,9 @@ alias gd="gatsby develop"
 alias nd="npm run develop"
 alias gph="git push origin HEAD"
 alias snvm="source ~/.nvm/nvm.sh"
+alias dev="cd; cd development"
+alias pod="arch -x86_64 pod"
+alias ei="nvm use 16 && expo start --ios"
 export PATH="/Users/poteboy/elrondsdk:$PATH"	# elrond-sdk
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -86,3 +91,8 @@ if [ -f '/Users/poteboy/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Use
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/poteboy/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/poteboy/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+source $(brew --prefix nvm)/nvm.sh
+
+[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
