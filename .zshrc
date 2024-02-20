@@ -9,6 +9,8 @@ export PATH="./node_modules/.bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh" # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init --path)"
 fi
@@ -22,7 +24,7 @@ function precmd() {
     tmux refresh-client -S
   fi
 }
-eval "$(rbenv init - zsh)"
+# eval "$(rbenv init - zsh)"
 # git設定
 autoload -Uz vcs_info
 setopt prompt_subst
@@ -83,16 +85,25 @@ alias gph="git push origin HEAD"
 alias snvm="source ~/.nvm/nvm.sh"
 alias dev="cd; cd development"
 alias pod="arch -x86_64 pod"
+alias coo="cd; cd desktop; cd THECOO"
 alias ei="nvm use 16 && expo start --ios"
+alias remove="docker-compose down --rmi all --volumes --remove-orphans"
 export PATH="/Users/poteboy/elrondsdk:$PATH"	# elrond-sdk
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/poteboy/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/poteboy/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/poteboy/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/poteboy/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 source $(brew --prefix nvm)/nvm.sh
 
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
+
+# The next line updates PATH for the Google Cloud SDK.
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+# if [ -f '/Users/keitafuruse/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/keitafuruse/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+
+# bun completions
+[ -s "/Users/keitafuruse/.bun/_bun" ] && source "/Users/keitafuruse/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
